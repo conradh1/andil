@@ -1,0 +1,46 @@
+db.createCollection( "seeker",
+   { validator: { $or:
+      [
+         { name: { $type: "string", required: true } },
+         { id: { $type:  "integer", required: true, unique: true } },
+         { email: { $regex: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/, required: true   } },
+         { phone: { $type: "string"   } },
+         { status: { $in: [ "Active", "Available", "Unavailable" ] } },
+         { interests: { $type: "array" } }
+
+      ]
+            }
+} )
+
+db.createCollection( "provider",
+   { validator: { $or:
+      [
+         { name: { $type: "string", required: true } },
+         { id: { $type:  "integer" } },
+         { email: { $regex: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/, required: true   } },
+         { phone: { $type: "string"   } },
+         { status: { $in: [ "Active", "Available", "Unavailable" ] } },
+         { city: { $type: "string", required:true }},
+         { experiences: { $type: "array", required:true } }
+
+      ]
+	},
+       validationLevel: "moderate"
+    }
+)
+
+db.createCollection( "experience",
+   { validator: { $or:
+      [
+         { name: { $type: "string" } },
+         { id: { $type:  "integer" } },
+         { description: { $type:  "integer" } },
+         { location: { $type: "string" }},
+         { rating: { $type: "array" } }
+
+      ]
+      },
+   validationLevel: "moderate"
+} )
+
+
