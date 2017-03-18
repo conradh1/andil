@@ -3,24 +3,42 @@
  *
  * */
 
-var routerApp = angular.module('routerApp', ['ui.router']);
+var wallaweeApp = angular.module('wallaweeApp', ['ui.router']);
 
-routerApp.config(function($stateProvider, $urlRouterProvider) {
+wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/home');
 
     $stateProvider
 
         // HOME STATES AND NESTED VIEWS ========================================
-        .state('home', {
+	.state('home', {
             url: '/home',
-            templateUrl: 'home.html'
+            views: {
+                '': { templateUrl: 'home.html' },
+		'experiences' : { templateUrl: 'experiences.html' }
+                }
         })
 
-        // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
+        // ABOUT PAGE  =================================
         .state('about', {
             url: '/about',
             templateUrl: 'about.html'
+        })
+
+	//Help PAGE  =================================
+	.state('help', {
+            url: '/help',
+            templateUrl: 'help.html'
+        })
+
+	// Sign UP PAGE  =================================
+	.state('signup', {
+            url: '/signup',
+            templateUrl: 'signup.html'
         });
+
 });
+
+
 
