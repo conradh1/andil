@@ -45,10 +45,10 @@
 </head>
 <body ng-app="wallaweeApp">
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
+<nav class="navbar navbar-inverse" role="navigation">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+       <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+        <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -57,18 +57,17 @@
         <img src="images/logo.png" class="img-rounded" alt="Cinque Terre" width="60" height="42">
       </a>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
+    <div class="collapse navbar-collapse" uib-collapse="navCollapsed">
       <ul class="nav navbar-nav">
-        <li class="active"><a ui-sref="home">Home</a></li>
+        <li><a ui-sref="home">Home</a></li>
         <li><a ui-sref="about">About</a></li>
         <li><a ui-sref="signup">Sign Up</a></li>
         <li><a ui-sref="help">Help</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
     </div>
-  </div>
 </nav>
 <!-- MAIN CONTENT -->
 <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
@@ -77,12 +76,12 @@
 </div>
 <div class="container text-center">
   <h3>Explore Experiences</h3>
-  <form>
+  <form ng-submit="processForm()">
     <div id="custom-search-input">
-      <div class="input-group col-md-8">
-	<input type="text" class="search-query form-control" placeholder="Search (Photography, Food, Surfing, Diving...)" />
+      <div class="input-group col-md-12">
+	<input type="text" name="name" ng-model="formData.name" class="search-query form-control" placeholder="Search (Photography, Food, Surfing, Diving...)" />
 	<span class="input-group-btn">
-	    <button class="btn btn-danger" type="button">
+	    <button type="submit" class="btn btn-danger" type="button">
 	      <span class=" glyphicon glyphicon-search"></span>
 	    </button>
 	</span>

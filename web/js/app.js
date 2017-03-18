@@ -3,7 +3,8 @@
  *
  * */
 
-var wallaweeApp = angular.module('wallaweeApp', ['ui.router']);
+//angular.module('wallaweeApp', ['ui.bootstrap']);
+var wallaweeApp = angular.module('wallaweeApp', ['ui.router', 'ui.bootstrap']);
 
 wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
 
@@ -17,7 +18,8 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
             views: {
                 '': { templateUrl: 'home.html' },
 		'experiences' : { templateUrl: 'experiences.html' }
-                }
+                   },
+            controller: 'formController'
         })
 
         // ABOUT PAGE  =================================
@@ -38,7 +40,20 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'signup.html'
         });
 
-});
+})
 
+// our controller for the form
+// =============================================================================
+wallaweeApp.controller('formController', function($scope) {
+
+    // we will store all of our form data in this object
+    $scope.formData = {};
+
+    // function to process the form
+    $scope.processForm = function() {
+        alert('awesome! Thanks'+$scope.formData.name);
+    };
+
+});
 
 
