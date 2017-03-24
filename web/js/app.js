@@ -46,13 +46,14 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
 // =============================================================================
 wallaweeApp.controller('searchFormCtrl', function($scope) {
     $scope.searchForm = {};
+    $scope.searchResponse = '';
     $scope.showKeywords = function() {
         return "Results: " + $scope.searchForm.keywords;
     };
 
     // function to process the form
     $scope.processSearchForm = function() {
-        alert('awesome! Thanks '+$scope.searchForm.keywords+"!");
+        $scope.searchResponse = 'Results for: '+$scope.searchForm.keywords+".";
     };
 });
 
