@@ -1,4 +1,4 @@
-<br>
+
 <div class="jumbotron">
   <h1>WallaWee</h1>
   <div class="container text-center">
@@ -9,3 +9,22 @@
     </p>
   </div>
 </div>
+
+<div class="form-container text-center" ng-controller="searchFormCtrl">
+  <h3>Explore Experiences</h3>
+  <form id="search-form" ng-submit="processSearchForm()">
+    <div id="custom-search-input">
+      <div class="input-group col-md-12">
+	<input type="text" name="keywords" ng-model="searchForm.keywords" class="search-query form-control" placeholder="Search (Photography, Food, Surfing, Diving...)" />
+	<span class="input-group-btn">
+	    <button type="submit" class="btn btn-danger">
+	      <span class=" glyphicon glyphicon-search"></span>
+	    </button>
+	</span>
+      </div>
+      <pre>{{showKeywords()}} </pre>
+    </div>
+   </form>
+  <br>
+  <br>
+</div> <!-- form-container text-center -->

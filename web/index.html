@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.min.css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script src="js/ui-bootstrap-tpls-2.5.0.min.js"></script>
   <script src="js/angular-ui-router.min.js"></script>
   <script src="js/app.js"></script>
@@ -73,25 +73,9 @@
 <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
 <div class="container">
     <div ui-view></div>
+    <div ui-view="experiences"></div>
 </div>
-<div class="container text-center">
-  <h3>Explore Experiences</h3>
-  <form ng-submit="processForm()">
-    <div id="custom-search-input">
-      <div class="input-group col-md-12">
-	<input type="text" name="name" ng-model="formData.name" class="search-query form-control" placeholder="Search (Photography, Food, Surfing, Diving...)" />
-	<span class="input-group-btn">
-	    <button type="submit" class="btn btn-danger" type="button">
-	      <span class=" glyphicon glyphicon-search"></span>
-	    </button>
-	</span>
-      </div>
-    </div>
-   </form>
-  <br>
-  <br>
-  <div ui-view="experiences"></div>
-</div> <!-- container text-center -->
+
 <footer class="container-fluid text-center">
   <p class="text-right">About Us</p>
   <p class="text-right">Careers </p>

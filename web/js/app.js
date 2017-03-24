@@ -19,7 +19,7 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
                 '': { templateUrl: 'home.html' },
 		'experiences' : { templateUrl: 'experiences.html' }
                    },
-            controller: 'formController'
+            controller: 'searchFormCtrl'
         })
 
         // ABOUT PAGE  =================================
@@ -44,16 +44,17 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
 
 // our controller for the form
 // =============================================================================
-wallaweeApp.controller('formController', function($scope) {
-
-    // we will store all of our form data in this object
-    $scope.formData = {};
-
-    // function to process the form
-    $scope.processForm = function() {
-        alert('awesome! Thanks'+$scope.formData.name);
+wallaweeApp.controller('searchFormCtrl', function($scope) {
+    $scope.searchForm = {};
+    $scope.showKeywords = function() {
+        return "Results: " + $scope.searchForm.keywords;
     };
 
+    // function to process the form
+    $scope.processSearchForm = function() {
+        alert('awesome! Thanks '+$scope.searchForm.keywords+"!");
+    };
 });
+
 
 
