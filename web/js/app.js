@@ -13,34 +13,61 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
 
         // HOME STATES AND NESTED VIEWS ========================================
-	.state('home', {
+	.state({
+	    name: 'home',
             url: '/home',
-            views: {
-                '': { templateUrl: 'home.html' },
-		'experiences' : { templateUrl: 'experiences.html' }
-                   },
-            controller: 'searchFormCtrl'
+	    views: {
+                '': { templateUrl: 'home.html',
+		      controller: 'searchFormCtrl'
+		    },
+		'experiences' : { controller: 'listExperiences',
+				  /*template: '<ul>'+
+				            '<li ng-repeat="experience in experiences">'+
+				              '<a>{{experience.name}}</a>'+
+				             '</li>'+
+				             '</ul>'*/
+
+		                   templateUrl: 'experiences.html'
+		                 }
+	    }
         })
 
         // ABOUT PAGE  =================================
-        .state('about', {
+        .state({
+	    name: 'about',
             url: '/about',
             templateUrl: 'about.html'
         })
 
 	//Help PAGE  =================================
-	.state('help', {
+	.state(  {
+	    name: 'help',
             url: '/help',
             templateUrl: 'help.html'
         })
 
 	// Sign UP PAGE  =================================
-	.state('signup', {
+	.state({
+	    name: 'signup',
             url: '/signup',
             templateUrl: 'signup.html'
         });
 
 })
+
+// List Experiences Controller
+// ========================================================
+
+wallaweeApp.controller('listExperiences', function($scope, $http) {
+  //$scope.experiences = [{ name: 'Alice' }, { name: 'Bob' }];
+   $scope.experience = null;
+    $http({method: 'GET', url: 'data/experiences.json'}).
+        success(function(data, status, headers, config) {
+            $scope.experiences=data;
+        }).error(function(data, status, headers, config) {
+    });
+});
+
 
 // our controller for the form
 // =============================================================================
@@ -53,9 +80,8 @@ wallaweeApp.controller('searchFormCtrl', function($scope) {
 
     // function to process the form
     $scope.processSearchForm = function() {
-        $scope.searchResponse = 'Results for: '+$scope.searchForm.keywords+".";
+        $scope.searchResponse = 'Search Results for: '+$scope.searchForm.keywords+".";
     };
 });
-
 
 

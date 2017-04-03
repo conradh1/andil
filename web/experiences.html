@@ -1,33 +1,10 @@
 <div class="row">
-    <div class="col-sm-4">
-      <h4>Experience 1</h4>
+    <div class="col-sm-4" ng-repeat="experience in experiences">
+      <h4>{{experience.slogan}}</h4>
       <img src="https://placehold.it/150x80?text=Image" class="img-responsive" style="width:100%" alt="Image">
-      <p class="text-left">Price, Time, Keywords</p>
-      <p class="text-left">Ratings: <mark>******</mark> </p>
-      <p class="text-left">No Flake Rating </p>
+      <p class="text-left">Provider: {{experience.name}}</p>
+      <p class="text-left">{{experience.description}}</p>
+      <p class="text-left">Price: {{experience.price}}</p>
+      <p class="text-left">Email: {{experience.email}}</p>
     </div>
-    <div class="col-sm-4">
-      <h4>Experience 2</h4>
-      <img src="https://placehold.it/150x80?text=Image" class="img-responsive" style="width:100%" alt="Image">
-      <p class="text-left">Price, Time, Keywords</p>
-      <p class="text-left">Ratings: <mark>******</mark> </p>
-      <p class="text-left">No Flake Rating </p>
-    </div>
-    <div class="col-sm-4">
-      <h4>Experience 3</h4>
-      <img src="https://placehold.it/150x80?text=Image" class="img-responsive" style="width:100%" alt="Image">
-      <p class="text-left">Price, Time, Keywords</p>
-      <p class="text-left">Ratings: <mark>******</mark> </p>
-      <p class="text-left">No Flake Rating </p>
-    </div>
-  </div>
-  <div class="row">
-      <div class="col-sm-6">
-      <h3>Featured Adventure</h3>
-      <img src="https://placehold.it/150x80?text=Image" class="img-responsive" style="width:100%" alt="Image">
-      <p class="text-left">Price, Time, Keywords</p>
-      <p class="text-left">Ratings: <mark>******</mark> </p>
-      <p class="text-left">No Flake Rating </p>
-    </div>
-  </div>
 </div>
