@@ -20,15 +20,12 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
                 '': { templateUrl: 'home.html',
 		      controller: 'searchFormCtrl'
 		    },
-		'experiences' : { controller: 'listExperiences',
-				  /*template: '<ul>'+
-				            '<li ng-repeat="experience in experiences">'+
-				              '<a>{{experience.name}}</a>'+
-				             '</li>'+
-				             '</ul>'*/
-
-		                   templateUrl: 'experiences.html'
-		                 }
+		'experiences': { component: 'experiences' }
+	   },
+	   resolve: {
+	      experiences: function(ExperienceService) {
+		return ExperienceService.getAllExperiences();
+	      }
 	    }
         })
 
@@ -54,6 +51,38 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
         });
 
 })
+
+// Experiences Service
+// ========================================================
+wallaweeApp.service('ExperienceService', function($http) {
+  var service = {
+    getAllExperiences: function() {
+      return $http.get('data/experiences.json', { cache: true }).then(function(resp) {
+        return resp.data;
+      });
+    },
+
+    getPerson: function(id) {
+      function experienceMatchesParam(experience) {
+        return experience.id === id;
+      }
+
+      return service.getAllExperiences().then(function (experiences) {
+        return experiences.find(experienceMatchesParam)
+      });
+    }
+  }
+
+  return service;
+});
+
+
+wallaweeApp.component('experiences', {
+  bindings: { experiences: '<' },
+
+  templateUrl: 'experiences.html'
+});
+
 
 // List Experiences Controller
 // ========================================================
