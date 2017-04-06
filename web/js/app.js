@@ -29,6 +29,18 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
 	    }
         })
 
+
+	// Show Expereince PAGE  =================================
+	.state({name: 'experience',
+		url: '/experience/{experienceId}',
+		component: 'experience',
+		resolve: {
+		  experience: function(ExperienceService, $stateParams) {
+		    return ExperienceService.getPerson($stateParams.experienceId);
+		  }
+		}
+	})
+
         // ABOUT PAGE  =================================
         .state({
 	    name: 'about',
@@ -49,6 +61,8 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/signup',
             templateUrl: 'signup.html'
         });
+
+
 
 })
 
@@ -77,6 +91,8 @@ wallaweeApp.service('ExperienceService', function($http) {
 });
 
 
+// Expereiences Component
+// ========================================================
 wallaweeApp.component('experiences', {
   bindings: { experiences: '<' },
 
@@ -84,9 +100,18 @@ wallaweeApp.component('experiences', {
 });
 
 
+// An Expereience Component
+// ========================================================
+wallaweeApp.component('experience', {
+  bindings: { experience: '<' },
+  templateUrl: 'experience.html'
+
+});
+
+
+
 // List Experiences Controller
 // ========================================================
-
 wallaweeApp.controller('listExperiences', function($scope, $http) {
   //$scope.experiences = [{ name: 'Alice' }, { name: 'Bob' }];
    $scope.experience = null;
