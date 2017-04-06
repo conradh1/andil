@@ -9,9 +9,10 @@
 	  <img src="https://placehold.it/150x80?text=Image" class="img-responsive" style="width:100%" alt="Image">
 	</a>
       </div>
-      <p class="text-left">Provider: <strong>{{experience.name}}</strong></p>
-      <p class="text-left">{{experience.description}}</p>
-      <p class="text-left">Price: {{experience.price | currency  }}</p>
-      <p class="text-left">Email: {{experience.email}}</p>
+      <ul class="list-unstyled">
+	<li>Provider: <strong>{{experience.name}}</strong></li>
+	<li>{{experience.description}}</li>
+	<li>Price: {{experience.price | currency  }}</li>
+      </ul>
     </div>
 </div>
