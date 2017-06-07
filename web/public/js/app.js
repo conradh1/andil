@@ -69,9 +69,10 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
 // Experiences Service
 // ========================================================
 wallaweeApp.service('ExperienceService', function($http) {
+		console.log("Controller called, listing experienecs.");
   var service = {
     getAllExperiences: function() {
-      return $http.get('data/experiences.json', { cache: true }).then(function(resp) {
+      return $http.get('/experiences', { cache: true }).then(function(resp) {
         return resp.data;
       });
     },
@@ -115,7 +116,8 @@ wallaweeApp.component('experience', {
 wallaweeApp.controller('listExperiences', function($scope, $http) {
   //$scope.experiences = [{ name: 'Alice' }, { name: 'Bob' }];
    $scope.experience = null;
-    $http({method: 'GET', url: 'data/experiences.json'}).
+   console.log("Controller called, listing experienecs.");
+    $http({method: 'GET', url: '/experiences'}).
         success(function(data, status, headers, config) {
             $scope.experiences=data;
         }).error(function(data, status, headers, config) {
