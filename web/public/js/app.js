@@ -18,16 +18,16 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/home',
 	    views: {
                 '': { templateUrl: 'home.html',
-		      controller: 'searchFormCtrl'
-		    },
+					  controller: 'searchFormCtrl'
+					},
 		'experiences': { component: 'experiences' }
 	   },
 	   resolve: {
-	      experiences: function(ExperienceService) {
-		return ExperienceService.getAllExperiences();
-	      }
+					experiences: function(ExperienceService) {
+						return ExperienceService.getAllExperiences();
+					}
 	    }
-        })
+	})
 
 
 	// Show Expereince PAGE  =================================
@@ -69,26 +69,26 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
 // Experiences Service
 // ========================================================
 wallaweeApp.service('ExperienceService', function($http) {
-		console.log("Controller called, listing experienecs.");
-  var service = {
-    getAllExperiences: function() {
-      return $http.get('/experiences', { cache: true }).then(function(resp) {
-        return resp.data;
-      });
-    },
+	console.log("Controller called, listing experienecs.");
+	var service = {
+		getAllExperiences: function() {
+			return $http.get('/experiences', { cache: true }).then(function(resp) {
+				return resp.data;
+			});
+		},
 
-    getPerson: function(id) {
-      function experienceMatchesParam(experience) {
-        return experience.id === id;
-      }
+		getPerson: function(id) {
+			function experienceMatchesParam(experience) {
+				return experience.id === id;
+			}
 
-      return service.getAllExperiences().then(function (experiences) {
-        return experiences.find(experienceMatchesParam)
-      });
-    }
-  }
+			return service.getAllExperiences().then(function (experiences) {
+				return experiences.find(experienceMatchesParam)
+			});
+		}
 
-  return service;
+	}
+	return service;
 });
 
 

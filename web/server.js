@@ -2,6 +2,7 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
+var mysql = require('mysql');
 var app = express();
 
 
@@ -13,84 +14,34 @@ app.listen(8080);
 console.log("Server running on port 8080");
 
 app.get('/experiences', function (req, res) {
-  console.log('I received a GET request');
-	var experiences = [
-  {
-    "id": "1",
-    "isActive": true,
-    "name": "Bob Somebody",
-    "slogan": "Let's go for a rip",
-    "description" : "A mountain biking rave.",
-    "price" : "50",
-    "rating" : "4",
-    "keywords" : "mountain bike, adventure, outdoors, trail",
-    "transportation": "Yes",
-    "email": "bob@nowhere.com"
-  },
-  {
-    "id": "2",
-    "isActive": true,
-    "name": "Kelly Kook",
-    "slogan": "Girls Who Surf",
-    "description" : "Want to surf with other girls? Come join us!",
-    "keywords" : "surf, water sports, outdoors, ocean, women",
-    "price" : "Free",
-    "rating": "5",
-    "transportation": "Provided",
-    "email": "kelly@girlswhosurf.com"
-  },
-  {
-    "id": "3",
-    "isActive": true,
-    "name": "Bra Boo",
-    "slogan": "We like Beer",
-    "description" : "Need a local to show you the pub crawl.",
-    "keywords" : "pub crawl, city, bars",
-    "price" : "20",
-    "rating": "3.5",
-    "transportation": "None",
-    "email": "bra@booze.com"
-  },
-  {
-    "id": "4",
-    "isActive": true,
-    "name": "Connie Cook",
-    "slogan": "I love food!",
-    "description" : "Personal Cooking Lessons",
-    "keywords" : "cooking, indoors, food, city, lessons",
-    "price" : "50",
-    "rating": "4",
-    "transportation": "Provided",
-    "email": "connie@foodmail.com"
-  },
-  {
-    "id": "5",
-    "isActive": true,
-    "name": "Paul Pictures",
-    "slogan": "Photography is Art!",
-    "description" : "I provided ",
-    "keywords" : "photo, art, outdoors, indoors, lessons",
-    "price" : "100",
-    "rating": "5",
-    "transportation": "Provided",
-    "email": "paul@paulspics.com"
-  },
-  {
-    "id": "6",
-    "isActive": true,
-    "name": "Helen Hiker",
-    "slogan": "I like to hike!",
-    "description" : "Hiking around Hawaii",
-    "keywords" : "hike, outdoors",
-    "price" : "Free",
-    "rating": "3.5",
-    "transportation": "None",
-    "email": "helen@hiker.org"
-  }
-]
-	res.json(experiences);
-//   db.contactlist.find(function (err, docs) {
-//     console.log(docs);
-//     res.json(docs);
-//   });
+	console.log('I received a GET request');
+
+	var con = mysql.createConnection({
+		host: "localhost",
+		user: "web_wallawee",
+		password: "W@11@w33",
+		database: "wallawee",
+
+	});
+
+	con.connect(function(err) {
+		var myquery =
+		"select  p.pk_id as id \
+		,active as isActive \
+		,CONCAT(firstname,' ',lastname) as name \
+		,slogan\
+		,LEFT(short_description, 50)  as description \
+		,50.00 as price\
+		,3 as rating\
+		,'Provided' as transportation \
+		,email \
+		from providers p inner join experiences e on e.fk_provider_id = p.pk_id limit 6";
+		if (err) throw err;
+
+		con.query(myquery, function (err, rows, fields) {
+			if (err) throw err;
+				console.log(rows);
+				res.json(rows);
+		});
+	});
 });
