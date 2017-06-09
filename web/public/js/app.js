@@ -69,24 +69,29 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
 // Experiences Service
 // ========================================================
 wallaweeApp.service('ExperienceService', function($http) {
-	console.log("Controller called, listing experienecs.");
 	var service = {
 		getAllExperiences: function() {
+			console.log("getAllExperiences called.");
 			return $http.get('/experiences', { cache: true }).then(function(resp) {
 				return resp.data;
 			});
 		},
 
+// 		getPerson: function(id) {
+// 			function experienceMatchesParam(experience) {
+// 				return experience.id === id;
+// 			}
+//
+// 			return service.getAllExperiences().then(function (experiences) {
+// 				return experiences.find(experienceMatchesParam)
+// 			});
+// 		}
 		getPerson: function(id) {
-			function experienceMatchesParam(experience) {
-				return experience.id === id;
-			}
-
-			return service.getAllExperiences().then(function (experiences) {
-				return experiences.find(experienceMatchesParam)
+			console.log("getPerson Called"+id);
+			return $http.get('/experience/'+id, { cache: true }).then(function(resp) {
+				return resp.data;
 			});
 		}
-
 	}
 	return service;
 });
@@ -107,21 +112,6 @@ wallaweeApp.component('experience', {
   bindings: { experience: '<' },
   templateUrl: 'experience.html'
 
-});
-
-
-
-// List Experiences Controller
-// ========================================================
-wallaweeApp.controller('listExperiences', function($scope, $http) {
-  //$scope.experiences = [{ name: 'Alice' }, { name: 'Bob' }];
-   $scope.experience = null;
-   console.log("Controller called, listing experienecs.");
-    $http({method: 'GET', url: '/experiences'}).
-        success(function(data, status, headers, config) {
-            $scope.experiences=data;
-        }).error(function(data, status, headers, config) {
-    });
 });
 
 
