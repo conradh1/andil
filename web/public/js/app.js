@@ -77,15 +77,6 @@ wallaweeApp.service('ExperienceService', function($http) {
 			});
 		},
 
-// 		getPerson: function(id) {
-// 			function experienceMatchesParam(experience) {
-// 				return experience.id === id;
-// 			}
-//
-// 			return service.getAllExperiences().then(function (experiences) {
-// 				return experiences.find(experienceMatchesParam)
-// 			});
-// 		}
 		getPerson: function(id) {
 			console.log("getPerson Called"+id);
 			return $http.get('/experience/'+id, { cache: true }).then(function(resp) {
@@ -96,6 +87,19 @@ wallaweeApp.service('ExperienceService', function($http) {
 	return service;
 });
 
+
+// List Experiences Controller DEPRACATED
+// ========================================================
+wallaweeApp.controller('listExperience', function($http, $scope, $stateParams) {
+   $scope.experience = null;
+
+    $http({method: 'GET', url: '/experience/'+$stateParams.experienceId}).
+        success(function(data, status, headers, config) {
+			console.log(JSON.stringify(data));
+            $scope.experience=data;
+        }).error(function(data, status, headers, config) {
+    });
+});
 
 // Expereiences Component
 // ========================================================
@@ -129,5 +133,6 @@ wallaweeApp.controller('searchFormCtrl', function($scope) {
         $scope.searchResponse = 'Search Results for: '+$scope.searchForm.keywords+".";
     };
 });
+
 
 

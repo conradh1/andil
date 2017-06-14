@@ -52,7 +52,7 @@ app.get('/experiences', function (req, res) {
 
 app.get('/experience/:experienceId', function (req, res) {
   var experienceId = req.params.experienceId;
-  console.log("Experience ID"+experienceId);
+  console.log("Experience ID: "+experienceId);
   	var con = mysql.createConnection({
 		host: whost,
 		user: wuser,
@@ -84,11 +84,3 @@ app.get('/experience/:experienceId', function (req, res) {
 	});
 
 });
-
-// app.get('/contactlist/:id', function (req, res) {
-//   var id = req.params.id;
-//   console.log(id);
-//   db.contactlist.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
-//     res.json(doc);
-//   });
-// });

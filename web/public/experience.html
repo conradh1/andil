@@ -1,8 +1,9 @@
 <br>
+<div ng-repeat="detail in $ctrl.experience">
 <div class="jumbotron">
-  <h1>{{$ctrl.experience.slogan}}</h1>
+  <h1>{{detail.slogan}}</h1>
   <div class="container text-center">
-    <p class="text-left">{{$ctrl.experience.description}}</p>
+    <p class="text-left">{{detail.description}}</p>
   </div>
 </div>
 <div class="row">
@@ -11,10 +12,10 @@
   </div>
   <div class="col-sm-6">
     <ul class="list-group">
-      <li class="list-group-item">Provider: {{$ctrl.experience.name}}</li>
-      <li class="list-group-item">Price: {{$ctrl.experience.price | currency  }}</li>
+      <li class="list-group-item">Provider: {{detail.name}}</li>
+      <li class="list-group-item">Price: {{detail.price | currency  }}</li>
       <li class="list-group-item">Dates Available: TBD</li>
-      <li class="list-group-item">Email: {{$ctrl.experience.email}}</li>
+      <li class="list-group-item">Email: {{detail.email}}</li>
       <li class="list-group-item">Click here for phone contact TBD</li>
     </ul>
   </div>
@@ -34,3 +35,4 @@
   </div>
 </div>
 <button type="button" class="btn btn-primary" ui-sref="home">Back to Main</button>
+</div>
