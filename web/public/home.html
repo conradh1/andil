@@ -20,22 +20,19 @@
   </div>
 </div>
 
-<div class="form-container text-center" ng-controller="searchFormCtrl">
+<div class="form-container text-center" ng-controller="searchCtrl">
   <h3>Explore Experiences</h3>
-  <form id="search-form" ng-submit="processSearchForm()">
+  <form id="search-form" ng-submit="submit()">
     <div id="custom-search-input">
       <div class="input-group col-md-12">
-	<input type="text" name="keywords" ng-model="searchForm.keywords" class="search-query form-control" placeholder="Search (Photography, Food, Surfing, Diving...)" />
+	<input type="text" name="keywords" ng-model="keywords" class="search-query form-control" placeholder="Search (Photography, Food, Surfing, Diving...)" />
 	<span class="input-group-btn">
 	    <button type="submit" class="btn btn-danger">
 	      <span class=" glyphicon glyphicon-search"></span>
 	    </button>
 	</span>
       </div>
-      <pre>{{showKeywords()}} </pre>
-      <p>
-        {{searchResponse}}
-      </p>
+      <pre>{{keywords}}   {{showKeywords()}} </pre>
     </div>
    </form>
   <br>

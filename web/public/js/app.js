@@ -15,10 +15,10 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
         // HOME STATES AND NESTED VIEWS ========================================
 	.state({
 	    name: 'home',
-            url: '/home',
+            url: '/home?keywords',
 	    views: {
                 '': { templateUrl: 'home.html',
-					  controller: 'searchFormCtrl'
+					  controller: 'searchCtrl'
 					},
 		'experiences': { component: 'experiences' }
 	   },
@@ -26,7 +26,8 @@ wallaweeApp.config(function($stateProvider, $urlRouterProvider) {
 					experiences: function(ExperienceService) {
 						return ExperienceService.getAllExperiences();
 					}
-	    }
+	    },
+		reloadOnSearch: false
 	})
 
 
@@ -121,12 +122,20 @@ wallaweeApp.component('experience', {
 
 // our controller for the form
 // =============================================================================
-wallaweeApp.controller('searchFormCtrl', function($scope) {
-    $scope.searchForm = {};
-    $scope.searchResponse = '';
-    $scope.showKeywords = function() {
-        return "Results: " + $scope.searchForm.keywords;
+wallaweeApp.controller('searchCtrl', function($scope, $state, $stateParams) {
+
+	console.log("Called controller!");
+
+	// function to process the form
+    $scope.submit = function() {
+
+        console.log("Called submit!"+$scope.keywords);
+        $scope.showKeywords = function() {
+			return "Results: " + $scope.keywords;
+		};
+		$state.go('.', {keywords: $scope.keywords});
     };
+
 
     // function to process the form
     $scope.processSearchForm = function() {
