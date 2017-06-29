@@ -1,8 +1,10 @@
 <style>
 .jumbotron {
     margin-bottom: 0px;
-    background-image: url("images/waterfall.jpg");
+    background-image: url("images/main.jpg");
     background-position: 0% 25%;
+    padding-top: 20%;
+    padding-bottom: 20%;
     background-size: cover;
     background-repeat: no-repeat;
     color: white;
@@ -10,18 +12,13 @@
 }
 </style>
 <div class="jumbotron">
-  <h1>WallaWee</h1>
+  <!--<h1>WallaWee</h1>-->
   <div class="container text-center">
-    <p>Matching People with Expereiences, Adventure, and More!
-    </p>
-    <p>
-    <kbd>Insert more in the About page here!<kbd>
-    </p>
   </div>
 </div>
 
 <div class="form-container text-center" ng-controller="searchCtrl">
-  <h3>Explore Experiences</h3>
+  <h3>Matching People with Expereiences, Adventure, and More!</h3>
   <form id="search-form" ng-submit="submit()">
     <div id="custom-search-input">
       <div class="input-group col-md-12">
