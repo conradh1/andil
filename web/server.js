@@ -34,7 +34,8 @@ app.get('/experiences', function (req, res) {
 		,active as isActive \
 		,CONCAT(firstname,' ',lastname) as name \
 		,slogan\
-		,LEFT(short_description, 100)  as description \
+		,LEFT(short_description, 80)  as description \
+		,image_path_1 as image1 \
 		,50.00 as price\
 		,3 as rating\
 		,'Provided' as transportation \
@@ -67,7 +68,13 @@ app.get('/experience/:experienceId', function (req, res) {
 		,active as isActive \
 		,CONCAT(firstname,' ',lastname) as name \
 		,slogan\
-		,LEFT(short_description, 100)  as description \
+		,short_description \
+		,description \
+		,image_path_1 as image1 \
+		,image_path_2 as image2 \
+		,image_path_3 as image3 \
+		,image_path_4 as image4 \
+		,image_path_5 as image5 \
 		,50.00 as price\
 		,3 as rating\
 		,'Provided' as transportation \

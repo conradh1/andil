@@ -3,12 +3,12 @@
 <div class="jumbotron">
   <h1>{{detail.slogan}}</h1>
   <div class="container text-center">
-    <p class="text-left">{{detail.description}}</p>
+    <p class="text-left">{{detail.short_description}}</p>
   </div>
 </div>
 <div class="row">
   <div class="col-sm-4">
-    <img src="https://placehold.it/300x160?text=Image" class="img-circle" style="width:100%" alt="Image">
+    <img src="{{detail.image1}}" class="img-circle" style="width:100%" alt="Image">
   </div>
   <div class="col-sm-6">
     <ul class="list-group">
@@ -21,18 +21,18 @@
 </div>
 <div class="row">
   <div>
-   This is a long description
+   {{detail.description}}
   </div>
 </div>
 <div class="row">
   <div class="col-sm-4">
-    <img src="https://placehold.it/300x160?text=Image" class="img-rounded" style="width:100%" alt="Image">
+    <img src="{{detail.image2}}" class="img-rounded" style="width:100%" alt="Image">
   </div>
   <div class="col-sm-4">
-    <img src="https://placehold.it/300x160?text=Image" class="img-rounded" style="width:100%" alt="Image">
+    <img src="{{detail.image3}}" class="img-rounded" style="width:100%" alt="Image">
   </div>
   <div class="col-sm-4">
-    <img src="https://placehold.it/300x160?text=Image" class="img-rounded" style="width:100%" alt="Image">
+    <img src="{{detail.image4}}" class="img-rounded" style="width:100%" alt="Image">
   </div>
 </div>
 <button type="button" class="btn btn-primary" ui-sref="home">Back to Main</button>
